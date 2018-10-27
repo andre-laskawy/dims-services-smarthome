@@ -1,23 +1,24 @@
-﻿using SmartHome.Innogy;
-using SmartHome.Innogy.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿///-----------------------------------------------------------------
+///   File:         SmarthomeHandler.cs
+///   Author:   	Andre Laskawy           
+///   Date:         27.10.2018 12:11:13
+///-----------------------------------------------------------------
 
 namespace Dims.Smarthome.Service
 {
-    public class SmarthomeHandler
+    using SmartHome.Innogy;
+    using SmartHome.Innogy.Models;
+    using System;
+
+    /// <summary>
+    /// Defines the <see cref="SmarthomeHandler" />
+    /// </summary>
+    internal class SmarthomeHandler
     {
         /// <summary>
         /// The session
         /// </summary>
-        private SmarthomeSession session = new SmarthomeSession();
-
-        /// <summary>
-        /// The timer
-        /// </summary>
-        private Timer timer = null;
+        private SmarthomeSession session;
 
         /// <summary>
         /// The living room identifier
@@ -35,7 +36,7 @@ namespace Dims.Smarthome.Service
         private string password;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SmarthomeHandler" /> class.
+        /// Initializes a new instance of the <see cref="SmarthomeHandler"/> class.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="pass">The pass.</param>
@@ -45,7 +46,6 @@ namespace Dims.Smarthome.Service
             this.livingRoomId = livingRoomId;
             this.userName = user;
             this.password = pass;
-            timer = new Timer(Refresh, null, 1000 * 15, 1000 * 60 * 60 * 1);
         }
 
         /// <summary>
@@ -53,6 +53,7 @@ namespace Dims.Smarthome.Service
         /// </summary>
         public void Init()
         {
+            session = new SmarthomeSession();
             var success = session.Login(this.userName, this.password);
             if (success)
             {
@@ -75,7 +76,7 @@ namespace Dims.Smarthome.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Init();
             }
         }
 
@@ -94,23 +95,7 @@ namespace Dims.Smarthome.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-            }
-        }
-
-        /// <summary>
-        /// Refreshes the specified state.
-        /// </summary>
-        /// <param name="state">The state.</param>
-        private void Refresh(object state)
-        {
-            try
-            {
-                // myses.RefreshToken();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
+                Init();
             }
         }
     }

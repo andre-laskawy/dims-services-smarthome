@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ApplicationIcon />
-    <OutputType>Exe</OutputType>
-    <StartupObject>Dims.Smarthome.Service.Program</StartupObject>
+    <OutputType>Library</OutputType>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,15 +14,6 @@
     <PackageReference Include="Nanomite.Core.Network" Version="1.0.28" />
     <PackageReference Include="SmartHome.Lib" Version="1.0.0" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="appsettings.Dev.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
