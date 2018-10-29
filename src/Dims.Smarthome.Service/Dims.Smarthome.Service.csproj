@@ -16,4 +16,8 @@
     <PackageReference Include="NLog.Extensions.Logging" Version="1.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\dims-common\src\Dims.Common\Dims.Common.csproj" />
+  </ItemGroup>
+
 </Project>
